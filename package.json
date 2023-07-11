@@ -1,0 +1,19 @@
+{
+  "name": "dbms-project",
+  "version": "1.0.0",
+  "description": "This is a project done under the Database Management System Course Practical of Year III Part I of Electronics, Communication and Information Engineering, IOE. Project by Sabin Acharya(Roll: THA077BEI035), Thapathali Campus, IOE, T.U.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "fs": "^0.0.1-security"
+  }
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../css/style.css" />
+    <link rel="shortcut icon" href="./../images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Project DBMS</title>
+  </head>
+  <body>
+    <!-- Side Navigation Bar -->
+    <div class="side-nav-bar">
+      <i class="fa fa-times" id="close-side-nav" aria-hidden="true"></i>
+      <div class="heading">
+        <img src="./../images/logo.png" alt="logo" class="logo" />
+        <h1><span>Project</span><span style="color: #2966ff">DBMS</span></h1>
+      </div>
+      <div class="buttons-list">
+        <p class="simple-text" id="menu-text">Menu</p>
+        <!-- Home button -->
+        <button type="button" class="normal-nav-button active" id="home-button">
+          <i class="fa-solid fa-home label-icon"></i>
+          <p class="label">Home</p>
+        </button>
+        <!-- Services Button -->
+        <div>
+          <button
+            type="button"
+            class="expandable-button-container"
+            id="services-button"
+          >
+            <div class="icon-label-container">
+              <i class="fa-solid fa-table-list label-icon"></i>
+              <p class="label">Services</p>
+            </div>
+            <i class="fa fa-chevron-down icon" aria-hidden="true"></i>
+          </button>
+          <div class="sub-buttons-list hidden">
+            <button
+              type="button"
+              class="normal-nav-button"
+              id="data-entry-button"
+            >
+              Data Entry
+            </button>
+            <button
+              type="button"
+              class="normal-nav-button"
+              id="view-table-button"
+            >
+              View Table
+            </button>
+          </div>
+        </div>
+        <!-- About Button -->
+        <button type="button" class="normal-nav-button" id="about-button">
+          <i class="fa fa-info-circle label-icon" aria-hidden="true"></i>
+          <p class="label">About</p>
+        </button>
+      </div>
+    </div>
+    <!-- Main content Box -->
+    <div class="content-box">
+      <div class="content-box-header">
+        <h2 id="content-title">Good Day!</h2>
+        <div class="userbox-with-menu">
+          <i id="menu-button" class="fa fa-bars" aria-hidden="true"></i>
+          <div class="user-box">
+            <div class="profile">SA</div>
+            <div class="user-profile-dropdown">
+              <div class="user-detail">
+                <p class="user-name">Sabin Acharya</p>
+                <p class="user-role simple-text">Administrator</p>
+              </div>
+              <!-- <i class="fa-solid fa-caret-down"></i> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-box-body">
+        <div class="content-container">
+          <!-- Home page content -->
+          <div class="home-page-content hidden">
+            <div class="heading-display">
+              <img src="./../images/logo.png" alt="logo" class="logo-display" />
+              <h1 class="heading-text-display">
+                <span>Project</span><span style="color: #2966ff">DBMS</span>
+              </h1>
+            </div>
+            <p class="slogan simple-text">
+              "A Data Entry and Visualization App"
+            </p>
+            <button type="button" class="simple-button" id="get-started-button">
+              Get Started
+            </button>
+          </div>
+          <!-- Data Entry page content -->
+          <div class="data-entry-page-content">
+            <div class="form">
+              <!-- Title -->
+              <h2 id="form-title">Student Entry Form</h2>
+              <!-- Form Fields -->
+              <!-- Full Name -->
+              <div class="form-entity">
+                <label for="full-name">Full Name: </label>
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  class="text-field"
+                  id="full-name"
+                />
+              </div>
+              <!-- Roll Number -->
+              <div class="form-entity">
+                <label for="roll-number">Roll Number: </label>
+                <input
+                  type="text"
+                  placeholder="Your Roll"
+                  class="text-field"
+                  id="roll-number"
+                />
+              </div>
+              <!-- Gender -->
+              <div class="form-entity">
+                <label for="gender">Gender: </label>
+                <div class="option">
+                  <input type="radio" name="Gender" id="male" />
+                  <label for="male" class="option-label">Male </label>
+                </div>
+                <div class="option">
+                  <input type="radio" name="Gender" id="female" />
+                  <label for="female" class="option-label">Female </label>
+                </div>
+                <div class="option">
+                  <input type="radio" name="Gender" id="other" />
+                  <label for="other" class="option-label">Other</label>
+                </div>
+              </div>
+              <!-- DOB -->
+              <div class="form-entity">
+                <label for="dob">Date of Birth: </label>
+                <input
+                  type="date"
+                  placeholder="Your Birthdate"
+                  class="text-field"
+                  id="dob"
+                />
+              </div>
+              <!-- Height -->
+              <div class="form-entity">
+                <label for="height">Height: </label>
+                <input
+                  type="number"
+                  placeholder="Your Height"
+                  class="text-field"
+                  id="height"
+                />
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="button"
+                class="simple-button"
+                id="form-submit-button"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+          <!-- View table page content -->
+          <table class="view-table-page-content hidden">
+            <tr>
+              <th>Server Name</th>
+              <th>IP Address</th>
+              <th>OS</th>
+              <th>Environment</th>
+              <th>Group</th>
+              <th>Location</th>
+              <th>Owner</th>
+              <th>Application</th>
+              <th>Business Unit</th>
+              <th>Support</th>
+              <th>Support Contact</th>
+              <th>Support Email</th>
+              <th>Support Phone</th>
+              <th>Support Pager</th>
+            </tr>
+          </table>
+          <!-- About page content -->
+          <div class="about-page-content hidden"></div>
+        </div>
+      </div>
+    </div>
+    <script src="./../js/script.js"></script>
+  </body>
+</html>
