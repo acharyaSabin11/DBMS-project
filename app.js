@@ -69,15 +69,34 @@ const server = http.createServer((req, res) => {
                 'Expires': new Date().toUTCString
             });
             res.write(logoImageContent);
+        } //if background image file is requested
+        else if (req.url === '/images/background.jpg') {
+            const backgroundImagePath = __dirname + "/frontend/images/background.jpg";
+            let backgroundImageContent = "";
+            try {
+                backgroundImageContent = fs.readFileSync(backgroundImagePath);
+            } catch (e) {
+                console.log(`Error opening background Image: ${e}`);
+            }
+            res.writeHead(200, {
+                'Content-Type': 'image/jpg',
+                'Content-Length': backgroundImageContent.length,
+                'Expires': new Date().toUTCString
+            });
+            res.write(backgroundImageContent);
             //if any of the url that is not implemented is requested.
         } else {
             console.log('Some unknown GET path is being requested!')
             console.log(`Path being requested: ${req.url}`);
             res.statusCode = 404;
             res.setHeader('Content-Type', 'text/plain');
-            res.end('Sorry this path could not be found');
+            res.write('Sorry this path could not be found');
         }
         res.end()
+    } else if (req.method === 'POST') {
+        if (req.url === '/submit-form') {
+            //TODO: Add the logic to add data to the database
+        }
     }
 
 });
