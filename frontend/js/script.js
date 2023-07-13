@@ -213,6 +213,7 @@ homeButton.addEventListener('click', () => {
     aboutButton.classList.remove('active');
     dataEntryButton.classList.remove('active');
     homeButton.classList.add('active');
+    sideNavBar.classList.remove('makeVisible');
 });
 dataEntryButton.addEventListener('click', () => {
     homePageContent.classList.add('hidden');
@@ -223,6 +224,7 @@ dataEntryButton.addEventListener('click', () => {
     viewTableButton.classList.remove('active');
     aboutButton.classList.remove('active');
     dataEntryButton.classList.add('active');
+    sideNavBar.classList.remove('makeVisible');
 });
 getStartedButton.addEventListener('click', () => {
     homePageContent.classList.add('hidden');
@@ -234,6 +236,7 @@ getStartedButton.addEventListener('click', () => {
     aboutButton.classList.remove('active');
     dataEntryButton.classList.add('active');
     servicesButton.parentElement.querySelector('.sub-buttons-list').classList.remove('hidden');
+    sideNavBar.classList.remove('makeVisible');
 });
 viewTableButton.addEventListener('click', () => {
     homePageContent.classList.add('hidden');
@@ -244,6 +247,7 @@ viewTableButton.addEventListener('click', () => {
     aboutButton.classList.remove('active');
     dataEntryButton.classList.remove('active');
     viewTableButton.classList.add('active');
+    sideNavBar.classList.remove('makeVisible');
 });
 aboutButton.addEventListener('click', () => {
     homePageContent.classList.add('hidden');
@@ -254,4 +258,5 @@ aboutButton.addEventListener('click', () => {
     dataEntryButton.classList.remove('active');
     viewTableButton.classList.remove('active');
     aboutButton.classList.add('active');
+    sideNavBar.classList.remove('makeVisible');
 });

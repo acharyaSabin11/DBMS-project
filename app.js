@@ -5,7 +5,6 @@ const http = require('http');   //for handling http requests and response
 require('dotenv').config();     //for working with .env file
 const fs = require('fs');       //for working with the files in the filesystem.
 const pg = require('pg');   //for elephant sql database connection.
-const { constants } = require('buffer');
 
 //Setup constants declaration.
 const port = process.env.HOST_PORT;
@@ -15,7 +14,7 @@ const hostIP = process.env.HOST_IP;
 const indexHtmlPath = __dirname + "/frontend/html/index.html";
 const cssPath = __dirname + '/frontend/css/style.css';
 const scriptPath = __dirname + '/frontend/js/script.js'
-const logoPath = __dirname + '/frontend/images/logo.png'
+const logoPath = __dirname + '/frontend/assets/images/logo.png'
 
 //Reading the files synchronously
 let htmlContent = '';
@@ -85,7 +84,7 @@ const server = http.createServer(async (req, res) => {
             res.write(scriptContent);
         }
         //if logo file is requested
-        else if (req.url === '/images/logo.png') {
+        else if (req.url === '/assets/images/logo.png') {
             res.writeHead(200, {
                 'Content-Type': 'image/png',
                 'Content-Length': logoImageContent.length,
@@ -93,8 +92,8 @@ const server = http.createServer(async (req, res) => {
             });
             res.write(logoImageContent);
         } //if background image file is requested
-        else if (req.url === '/images/background.jpg') {
-            const backgroundImagePath = __dirname + "/frontend/images/background.jpg";
+        else if (req.url === '/assets/images/background.jpg') {
+            const backgroundImagePath = __dirname + "/frontend/assets/images/background.jpg";
             let backgroundImageContent = "";
             try {
                 backgroundImageContent = fs.readFileSync(backgroundImagePath);
