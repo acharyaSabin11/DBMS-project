@@ -4,6 +4,8 @@
 const http = require('http');   //for handling http requests and response
 require('dotenv').config();     //for working with .env file
 const fs = require('fs');       //for working with the files in the filesystem.
+const pg = require('pg');   //for elephant sql database connection.
+const { constants } = require('buffer');
 
 //Setup constants declaration.
 const port = process.env.HOST_PORT;
@@ -28,6 +30,26 @@ try {
 } catch (e) {
     console.log(`Error reading file: ${e}`);
 }
+
+//Database setup
+var pgClient = new pg.Client(process.env.DB_URL);   //creating client for database
+//Establishing connection with the database.
+pgClient.connect((err) => {
+    if (err) {
+        console.log(`Error connecting to database: ${err}`);
+    } else {
+        console.log('Connected to Database Successfully');
+        //Creating table if there is no table
+        const createTableQuery = 'CREATE TABLE IF NOT EXISTS tbl_students (roll VARCHAR(50) PRIMARY KEY, name VARCHAR(50), dob DATE, gender VARCHAR(50), height INT);';
+        pgClient.query(createTableQuery, (err, ret) => {
+            if (err) {
+                console.log(`Error creating table: ${err}`);
+            } else {
+                console.log('tbl_students READY');
+            }
+        });
+    }
+});
 
 //Server creation and request handeling here.
 const server = http.createServer((req, res) => {
@@ -96,6 +118,25 @@ const server = http.createServer((req, res) => {
     } else if (req.method === 'POST') {
         if (req.url === '/submit-form') {
             //TODO: Add the logic to add data to the database
+            let incomingBody = '';
+            let jsonBody;
+            let formSubmitQuery;
+            req.on('data', (chunk) => {
+                incomingBody += chunk;
+            })
+            req.on('end', () => {
+                jsonBody = JSON.parse(incomingBody);
+                formSubmitQuery = `INSERT INTO tbl_students (roll, name, dob, gender, height) VALUES ('${jsonBody.roll}', '${jsonBody.name}', '${jsonBody.dob}', '${jsonBody.gender}', ${jsonBody.height});`;
+                pgClient.query(formSubmitQuery, (err, _) => {
+                    if (err) {
+                        console.log(`Error inserting data into the table: ${err}`);
+                    }
+                    else {
+                        console.log('Insert Successful');
+                        console.log(`Query: ${formSubmitQuery}`);
+                    }
+                });
+            });
         }
     }
 

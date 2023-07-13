@@ -119,7 +119,7 @@ formSubmitButton.addEventListener('click', () => {
                 'roll': rollNumberTextField.value.trim(),
                 'gender': getGenderRadioInput(),
                 'dob': dobTextField.value.trim(),
-                'height': heightTextField.value.trim(),
+                'height': heightTextField.value.trim()
             })
 
         })
