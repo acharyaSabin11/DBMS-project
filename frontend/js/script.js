@@ -10,6 +10,12 @@ const getStartedButton = document.querySelector('#get-started-button');
 const servicesButton = document.querySelector('#services-button');
 const formSubmitButton = document.querySelector('#form-submit-button');
 const getDataButton = document.querySelector('#get-data-button');
+const clearTableButton = document.querySelector('#clear-table-button');
+const menuButton = document.querySelector('#menu-button');
+const closeSideNavBar = document.querySelector('#close-side-nav');
+
+//side nav bar selection
+const sideNavBar = document.querySelector('.side-nav-bar');
 
 //Page content selection
 const homePageContent = document.querySelector('.home-page-content');
@@ -33,6 +39,9 @@ const heightError = document.querySelector('#height-error');
 
 //Radio buttons selection
 const genderRadios = document.getElementsByName('Gender');
+
+//Table selection
+const tableBody = document.getElementById('table-body');
 
 //spans
 const dateSpan = document.getElementById('date-span');
@@ -105,8 +114,59 @@ function formValidation() {
     return hasError;
 }
 
+function clearTextFields() {
+    fullNameTextField.value = '';
+    rollNumberTextField.value = '';
+    dobTextField.value = '';
+    heightTextField.value = '';
+    genderRadios.forEach(element => element.checked = false);
+}
+
+menuButton.addEventListener('click', () => {
+    sideNavBar.classList.add('makeVisible');
+});
+
+closeSideNavBar.addEventListener('click', () => {
+    sideNavBar.classList.remove('makeVisible');
+});
+
+clearTableButton.addEventListener('click', async () => {
+    const result = await fetch('/clear-table', {
+        method: 'GET',
+    }).then(resp => {
+        if (resp.status == 200) {
+            tableBody.innerHTML = '';
+            alert('Cleared Table Successfully');
+        }
+    }).catch(e => {
+        console.log(e);
+        alert('Some Error occured in clearing table');
+    });
+
+})
+
+// Adding the event listener for get data button
+getDataButton.addEventListener('click', async () => {
+    const data = await fetch('/get-data', {
+        method: 'GET',
+    }).then(resp => resp.json()).catch(e => console.log(e));
+
+    var innerHtml = '';
+    data.forEach(element => {
+        innerHtml += `<tr>
+                  <td>${element.roll}</td>
+                  <td>${element.name}</td>
+                  <td>${element.dob}</td>
+                  <td>${element.gender}</td>
+                  <td>${element.height}</td>
+                </tr>`;
+    });
+
+    tableBody.innerHTML = innerHtml;
+});
+
 // Adding the event listener for submit button
-formSubmitButton.addEventListener('click', () => {
+formSubmitButton.addEventListener('click', async () => {
     let hasError = formValidation();
     if (!hasError) {
         fetch('/submit-form', {
@@ -122,7 +182,17 @@ formSubmitButton.addEventListener('click', () => {
                 'height': heightTextField.value.trim()
             })
 
-        })
+        }).then(resp => {
+            if (resp.status == 200) {
+                clearTextFields();
+            }
+            return resp.json();
+        }).then(data =>
+            alert(data.message)
+
+        ).catch(e => alert(e));
+
+
     }
 });
 

@@ -17,7 +17,9 @@
   <body>
     <!-- Side Navigation Bar -->
     <div class="side-nav-bar">
-      <i class="fa fa-times" id="close-side-nav" aria-hidden="true"></i>
+      <div class="row">
+        <i class="fa fa-times" id="close-side-nav" aria-hidden="true"></i>
+      </div>
       <div class="heading">
         <img src="./../images/logo.png" alt="logo" class="logo" />
         <h1><span>Project</span><span style="color: #2966ff">DBMS</span></h1>
@@ -207,145 +209,23 @@
                 Get Data
               </button>
             </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Roll Number</th>
-                  <th>Name</th>
-                  <th>Date of Birth</th>
-                  <th>Gender</th>
-                  <th>Height</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-                <tr>
-                  <td>THA077BEI035</td>
-                  <td>Sabin Acharya</td>
-                  <td>2002-11-27</td>
-                  <td>Male</td>
-                  <td>150</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Roll Number</th>
+                    <th>Name</th>
+                    <th>Date of Birth</th>
+                    <th>Gender</th>
+                    <th>Height</th>
+                  </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+              </table>
+            </div>
+            <button type="button" class="simple-button" id="clear-table-button">
+              Clear Table
+            </button>
           </div>
           <!-- About page content -->
           <div class="about-page-content hidden">
@@ -363,8 +243,7 @@
               <span>
                 This is a project done under the Database Management System
                 Course Practical of Year III Part I of Electronics,
-                Communication and Information Engineering, IOE. Project by Sabin
-                Acharya(Roll: THA077BEI035), Thapathali Campus, IOE, T.U.</span
+                Communication and Information Engineering, IOE.</span
               >
             </div>
             <div class="row-spaced">
@@ -386,8 +265,10 @@
               <div id="sub-to">
                 <p class="label">Submitted To:</p>
                 <div class="detail-row">
-                  <p class="label">Name:</p>
-                  <span>Bisikha Subedi </span>
+                  <span
+                    >Department of Electronics and Computer
+                    Engineering,Thapathali Campus, IOE, T.U.
+                  </span>
                 </div>
               </div>
             </div>

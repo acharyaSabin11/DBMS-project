@@ -52,10 +52,11 @@ pgClient.connect((err) => {
 });
 
 //Server creation and request handeling here.
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
 
     //Handling GET requests:
     if (req.method === 'GET') {
+        console.log(`Requested Route: ${req.url} (GET)`);
         //handling request for root
         if (req.url === '/') {
             res.writeHead(200, {
@@ -107,6 +108,18 @@ const server = http.createServer((req, res) => {
             });
             res.write(backgroundImageContent);
             //if any of the url that is not implemented is requested.
+        } else if (req.url === '/get-data') {
+            const { rows } = await pgClient.query('SELECT * FROM tbl_students;');
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.write(JSON.stringify(rows));
+            res.end();
+        } else if (req.url === '/clear-table') {
+            const { rows } = await pgClient.query('TRUNCATE TABLE tbl_students;');
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.write(JSON.stringify(rows));
+            res.end();
         } else {
             console.log('Some unknown GET path is being requested!')
             console.log(`Path being requested: ${req.url}`);
@@ -114,10 +127,10 @@ const server = http.createServer((req, res) => {
             res.setHeader('Content-Type', 'text/plain');
             res.write('Sorry this path could not be found');
         }
-        res.end()
+        res.end();
     } else if (req.method === 'POST') {
+        console.log(`Requested Route: ${req.url} (POST)`);
         if (req.url === '/submit-form') {
-            //TODO: Add the logic to add data to the database
             let incomingBody = '';
             let jsonBody;
             let formSubmitQuery;
@@ -130,10 +143,25 @@ const server = http.createServer((req, res) => {
                 pgClient.query(formSubmitQuery, (err, _) => {
                     if (err) {
                         console.log(`Error inserting data into the table: ${err}`);
+                        console.log(`Error Causing Query: ${formSubmitQuery}`);
+                        res.statusCode = 400;
+                        res.setHeader('Content-Type', 'application/json');
+                        const errJson = {
+                            'message': 'Roll number already exists in database'
+                        }
+                        res.write(JSON.stringify(errJson));
+                        res.end();
                     }
                     else {
                         console.log('Insert Successful');
                         console.log(`Query: ${formSubmitQuery}`);
+                        res.statusCode = 200;
+                        res.setHeader('Content-Type', 'application/json');
+                        const messageJson = {
+                            'message': 'Data Submitted Successfully'
+                        }
+                        res.write(JSON.stringify(messageJson));
+                        res.end();
                     }
                 });
             });

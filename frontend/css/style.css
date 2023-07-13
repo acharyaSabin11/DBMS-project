@@ -353,6 +353,10 @@ table tr:hover {
   border: 1px solid var(--var-primary-color);
 }
 
+.table-container {
+  width: 100%;
+}
+
 .upper-graph-row {
   flex: auto;
   width: 100%;
@@ -441,6 +445,7 @@ table tr:hover {
 
 #close-side-nav {
   visibility: hidden;
+  margin: 20px 20px 0px 0px;
 }
 
 .detail,
